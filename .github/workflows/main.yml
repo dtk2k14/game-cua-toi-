@@ -5,18 +5,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@main
+      uses: actions/checkout@v4
 
-    - name: Install Python and Buildozer
+    - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y python3 python3-pip python3-virtualenv git zip unzip openjdk-17-jdk signfile libc6-dev
-        pip3 install --upgrade pip --break-system-packages
-        pip3 install buildozer cython virtualenv --break-system-packages
+        sudo apt-get install -y python3 python3-pip python3-setuptools git zip unzip openjdk-17-jdk signfile libc6-dev
+        pip3 install --upgrade pip
+        pip3 install buildozer cython virtualenv
 
     - name: Build with Buildozer
       run: |
